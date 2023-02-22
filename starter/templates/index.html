@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../static/main.css">
+        <title>World's Best Cupcakes</title>
+    </head>
+    <body>
+        <header>
+            <h1>World's Best Cupcakes</h1>
+        </header>
+        <main>
+            <div class="all-cupcakes-cont">
+                {% for cupcake in cupcakes %}
+                    <h3>{{ cupcake["name"] }}</h3>
+                    <h4>Flavor: {{ cupcake["flavor"] }}</h4>
+                    <h4>Frosting: {{ cupcake["frosting"] }}</h4>
+                    <h4>Price: ${{ cupcake["price"] }}</h4>
+                    <a href="{{ url_for('add_cupcake', name=cupcake['name']) }}">
+                        <button>Add to Cart</button>
+                    </a>
+                {% endfor %}
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,16 @@
+body {
+    background-color: aquamarine;
+    font-family: fantasy;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}

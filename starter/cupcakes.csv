@@ -1,0 +1,6 @@
+size,name,price,flavor,frosting,sprinkles,filling
+mini,Small Fry,2,chocolate potato chip,chocolate,[True],
+regular,Little Tart,3,raspberry lemon,vanilla,[False],False
+jumbo,Big Kahuna,4,pineapple,coconut,[False],False
+regular,Boring Strawberry,3,strawberry,strawberry,[False],False
+regular,Death by Chocolate,3,chocolate,dark chocolate,[True],False
