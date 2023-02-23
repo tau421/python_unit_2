@@ -6,7 +6,9 @@ app = Flask(__name__)
 @app.route("/")
 def home():
     cupcakes = get_cupcakes("cupcakes.csv")
-    return render_template("index.html", cupcakes=cupcakes)
+    order = get_cupcakes("orders.csv")
+    order_total = round(sum([float(x["price"]) for x in order]), 2)
+    return render_template("index.html", cupcakes=cupcakes, items_num=len(order), order_total=order_total)
 
 @app.route("/cupcakes")
 def all_cupcakes():
@@ -22,13 +24,27 @@ def add_cupcake(name):
     else:
         return "Sorry, cupcake not found."
 
-@app.route("/cupcake_single")
-def single_cupcake():
-    return render_template("single-cupcake.html")
+@app.route("/single-cupcake/<name>")
+def single_cupcake(name):
+    cupcake = find_cupcake('cupcakes.csv', name)
+
+    if cupcake:
+        return render_template("single-cupcake.html", cupcake=cupcake)
+    else:
+        return "Sorry, cupcake not found."
 
 @app.route("/order")
 def order():
-    return render_template("order.html")
+    cupcakes=get_cupcakes("orders.csv")
+
+    cupcakes_counted = []
+    cupcake_set= set()
+
+    for cupcake in cupcakes:
+        cupcake_set.add((cupcake["name"], cupcake["price"], cupcakes.count(cupcake)))
+    
+    return render_template("order.html", cupcakes=cupcake_set)
+
 
 if __name__ == "__main__":
     app.env = "development"
